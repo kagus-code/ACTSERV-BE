@@ -54,6 +54,13 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+
+REST_FRAMEWORK = {
+     'DEFAULT_AUTHENTICATION_CLASSES':
+    ('rest_framework.authentication.TokenAuthentication',
+ )}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -65,11 +72,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-    'passwordless.apps.PasswordlessConfig'
+    'passwordless.apps.PasswordlessConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drfpasswordless',
 
 
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -149,3 +160,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PASSWORDLESS_AUTH = {
+
+   'PASSWORDLESS_AUTH_TYPES': ['EMAIL', 'MOBILE'],
+   'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'ekmuraya@gmail.com',
+   
+
+}
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

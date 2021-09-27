@@ -168,4 +168,19 @@ PASSWORDLESS_AUTH = {
    
 
 }
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+PASSWORDLESS_REGISTER_NEW_USERS = False
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email configurations remember to install python-decouple
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+
+
+# configuration for the abstract user model
+AUTH_USER_MODEL = 'passwordless.User'

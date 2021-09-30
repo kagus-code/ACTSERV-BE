@@ -57,7 +57,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 REST_FRAMEWORK = {
      'DEFAULT_AUTHENTICATION_CLASSES':
-    ('rest_framework.authentication.TokenAuthentication',
+    ('rest_framework_simplejwt.authentication.JWTAuthentication',
  )}
 
 
@@ -75,7 +75,7 @@ INSTALLED_APPS = [
 
     'passwordless.apps.PasswordlessConfig',
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'drfpasswordless',
 
 
@@ -167,8 +167,10 @@ PASSWORDLESS_AUTH = {
    'PASSWORDLESS_AUTH_TYPES': ['EMAIL', 'MOBILE'],
    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'ekmuraya@gmail.com',
    'PASSWORDLESS_MOBILE_NOREPLY_NUMBER': '+13397934867',
-   'PASSWORDLESS_REGISTER_NEW_USERS' : False
-
+   'PASSWORDLESS_REGISTER_NEW_USERS' : False,
+   'PASSWORDLESS_AUTH_TOKEN_CREATOR': 'passwordless.utils.get_token_for_user',
+   'PASSWORDLESS_AUTH_TOKEN_SERIALIZER': 'passwordless.serializers.JWTAuthTokenSerializer',
+   'PASSWORDLESS_EMAIL_TOKEN_HTML_TEMPLATE_NAME': "sending_token.html"
 }
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

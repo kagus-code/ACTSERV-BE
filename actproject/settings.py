@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'phonenumber_field',
-
+    "corsheaders",
     'passwordless.apps.PasswordlessConfig',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -86,6 +86,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -184,3 +185,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # configuration for the abstract user model
 AUTH_USER_MODEL = 'passwordless.User'
+
+
+CORS_ALLOW_ALL_ORIGINS = True

@@ -9,7 +9,7 @@ from .serializers import *
 from rest_framework.decorators import  permission_classes
 from django.http.response import Http404
 from .email import send_activation_email
-
+from rest_framework.permissions import NOT, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -71,3 +71,15 @@ class ActivateUserApiView(APIView):
             }
       return Response(response, status=status.HTTP_200_OK)
     return Response(status.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+@permission_classes([IsAuthenticated])
+class UserDataApiView(APIView):
+    serializer_class =  UserSerializerWithToken
+
+    def get(self, request, format=None):
+        user = request.user
+        serializers =  UserSerializerWithToken(user, many=False)
+        return Response(serializers.data)

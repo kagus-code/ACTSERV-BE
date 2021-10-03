@@ -55,5 +55,3 @@ class ActivateSerializer(serializers.ModelSerializer):
     fields = ['is_active']    
 
 
-
-

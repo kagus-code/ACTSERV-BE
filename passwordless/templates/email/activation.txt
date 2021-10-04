@@ -2,4 +2,4 @@ Hello {{name}}
 Welcome 
 We have seen you have signed up for our application
 
-Please click https://actservfe.herokuapp.com/verifyemail/?id={{id}} here to confirm your email address
+Please click http://localhost:3000/verifyemail/?id={{id}} here to confirm your email address
